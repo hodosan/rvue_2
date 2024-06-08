@@ -25,5 +25,6 @@ module Apps
     # config.eager_load_paths << Rails.root.join("extras")
     config.time_zone = "Tokyo"                     # 追加
     config.active_record.default_timezone = :local # 追加
+    config.i18n.default_locale = :ja # 追加
   end
 end
