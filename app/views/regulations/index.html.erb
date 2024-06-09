@@ -1,0 +1,37 @@
+<div class="w-full">
+  <table class="table-auto">
+    <caption class="text-2xl font-bold pb-4">就業規則</caption>
+    <thead>
+      <tr>
+        <th class="px-4 py-2">始業時刻</th>
+        <th class="px-4 py-2">終業時刻</th>
+        <th class="px-4 py-2">昼休開始</th>
+        <th class="px-4 py-2">昼休終了</th>
+        <th class="px-4 py-2">単位：分</th>
+        <th class="px-4 py-2">バージョン</th>
+        <th class="px-4 py-2"></th>
+        <th class="px-4 py-2"></th>
+        <th class="px-4 py-2"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="border px-4 py-2"><%= @regulation.begin_time if @regulation %></td>
+        <td class="border px-4 py-2"><%= @regulation.close_time if @regulation %></td>
+        <td class="border px-4 py-2"><%= @regulation.interval_s if @regulation %></td>
+        <td class="border px-4 py-2"><%= @regulation.interval_e if @regulation %></td>
+        <td class="border px-4 py-2"><%= @regulation.unit_minute if @regulation %></td>
+        <td class="border px-4 py-2"><%= @regulation.version if @regulation %></td>
+        <td class="border px-4 py-2">
+            <%= link_to '新規作成', new_regulation_path,  
+                class: "frm_btn bg-blue-400" %>
+        </td>
+        <td class="border px-4 py-2">
+            <%= link_to '変更', edit_regulation_path(@regulation),
+                method: :delete,  
+                class: "frm_btn bg-green-400" if @regulation %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

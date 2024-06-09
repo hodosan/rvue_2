@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  begin_time: MyString
+  close_time: MyString
+  interval_s: MyString
+  interval_e: MyString
+  unit_minute: 1
+  version: MyString
+
+two:
+  begin_time: MyString
+  close_time: MyString
+  interval_s: MyString
+  interval_e: MyString
+  unit_minute: 1
+  version: MyString

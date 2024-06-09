@@ -1,0 +1,37 @@
+<div id="<%= dom_id regulation %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">開始時刻:</strong>
+    <%= regulation.begin_time %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">終了時刻:</strong>
+    <%= regulation.close_time %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">昼休開始:</strong>
+    <%= regulation.interval_s %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">昼休終了:</strong>
+    <%= regulation.interval_e %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">単位：分:</strong>
+    <%= regulation.unit_minute %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">バージョン:</strong>
+    <%= regulation.version %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this regulation", regulation, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this regulation', edit_regulation_path(regulation), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

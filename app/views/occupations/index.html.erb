@@ -1,11 +1,10 @@
 <div class="w-full">
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">カレンダー日付管理</h1>
+    <h1 class="font-bold text-4xl">予約</h1>
   </div>
 
   <div class="wrapper bg-white rounded shadow w-full my-10">
-    <!-- タイトル見出し from -->
     <div class="header flex justify-between border-b p-2">
       <span class="text-lg font-bold">
         <%= @today.strftime("%Y年 %m月") %>
@@ -13,19 +12,18 @@
       <% nextmonth = (@today == Date.today) ? false : true %>
       <div class="buttons">
         <% if nextmonth %>
-          <%= link_to(calendars_path(month: "prev"), class: "p-1") do %>
+          <%= link_to(occupations_path(month: "prev"), class: "p-1") do %>
             <i class="text-green-300">←</i>
           <% end %>
           <i class="text-gray-300">→</i>
         <% else %>
           <i class="text-gray-300">←</i>
-          <%= link_to(calendars_path(month: "next"), class: "p-1") do %>
+          <%= link_to(occupations_path(month: "next"), class: "p-1") do %>
             <i class="text-green-300">→</i>
           <% end %>
         <% end %>
       </div>
     </div>
-    <!-- タイトル見出し to -->
 
     <table class="w-full">
       <thead>
@@ -60,8 +58,8 @@
           <% this_month = (day.strftime("%m") == @this_month) ? true : false %>
           <% is_close    = (@day_enable[day] == :closed) ? true : false %>
 
-          <td class="border <%= this_month ? '' : 'bg-gray-100' %> p-1 h-40 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 overflow-auto transition  duration-500 ease hover:bg-gray-300">
-            <div class="flex flex-col h-40 xl:w-40 lg:w-30 md:w-30 sm:w-full w-10 mx-auto overflow-hidden">
+          <td class="border <%= this_month ? '' : 'bg-gray-100' %> p-1 h-40 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 overflow-auto transition  duration-500 ease hover:bg-gray-300 ">
+            <div class="flex flex-col h-40 mx-auto xl:w-40 lg:w-30 md:w-30 sm:w-full w-10 overflow-hidden">
               <div class="top h-5 w-full">
                 <span class="text-gray-500"><%= day.strftime("%e") %></span>
               </div>
@@ -71,11 +69,9 @@
                     <%= @day_enable[day] %>
                   </span>
                 </div>
-                <!-- URLパラメーター　-->
-                <% params = {day: day, begin_time: @begin_time, close_time: @close_time, interval_s: @interval_s, interval_e: @interval_e, unit_minute: @unit_minute} %>
-                <%= link_to '稼働日作成', new_calendar_path(params), 
-                    class: "rounded-lg py-3 px-5 bg-blue-300 text-white block font-medium" \
-                    if day >= Date.today && is_close %>
+                <%= link_to '予約実施', new_occupation_path(day: day), 
+                    class: "rounded-lg py-3 px-5 bg-yellow-400 text-white block font-medium"  \
+                    if !is_close %>
               </div>
             </div>
           </td>
@@ -85,38 +81,5 @@
       </tbody>
     </table>
   </div>
-
-  <table class="table-auto mb-10">
-    <thead>
-      <tr>
-        <th class="px-4 py-2">日付</th>
-        <th class="px-4 py-2">開始</th>
-        <th class="px-4 py-2">終了</th>
-        <th class="px-4 py-2">昼休開始</th>
-        <th class="px-4 py-2">昼休終了</th>
-        <th class="px-4 py-2">単位：分</th>
-        <th class="px-4 py-2">休み</th>
-        <th class="px-4 py-2"></th>
-        <th class="px-4 py-2"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @calendars.each do |cal| %>
-        <% if cal.day >= @today %>
-          <tr>
-            <td class="border px-4 py-2"><%= cal.day %></td>
-            <td class="border px-4 py-2"><%= cal.begin_time.strftime("%R") %></td>
-            <td class="border px-4 py-2"><%= cal.close_time.strftime("%R") %></td>
-            <td class="border px-4 py-2"><%= cal.interval_s.strftime("%R") %></td>
-            <td class="border px-4 py-2"><%= cal.interval_e.strftime("%R") %></td>
-            <td class="border px-4 py-2"><%= cal.unit_minute %></td>
-            <td class="border px-4 py-2"><%= cal.no_use %></td>
-            <td class="border px-4 py-2"><%= link_to '編集', edit_calendar_path(cal), class: "frm_btn bg-gray-400" %></td>
-            <td class="border px-4 py-2"><%= button_to '削除', calendar_path(cal), method: :delete, class: "frm_btn bg-red-400" %></td>
-          </tr>
-        <% end %>
-      <% end %>
-    </tbody>
-  </table>
-
+  
 </div>

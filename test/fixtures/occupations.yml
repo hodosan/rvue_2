@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  room: one
+  day: 2024-06-09
+  time_s: 2024-06-09 12:19:50
+  time_e: 2024-06-09 12:19:50
+  reservation: false
+  confirmed: false
+
+two:
+  user: two
+  room: two
+  day: 2024-06-09
+  time_s: 2024-06-09 12:19:50
+  time_e: 2024-06-09 12:19:50
+  reservation: false
+  confirmed: false

@@ -8,6 +8,12 @@
         link_to("ルーム", rooms_path) end               if admin_signed_in? %>
 
     <%= content_tag(:li, class: "cursor-pointer") do
+        link_to("予約", occupations_path) end           if user_signed_in?  %>
+
+    <%= content_tag(:li, class: "cursor-pointer") do
+        link_to("就業規則", regulations_path) end        if admin_signed_in? %>
+
+    <%= content_tag(:li, class: "cursor-pointer") do
         link_to("カレンダー", calendars_path) end        if admin_signed_in? %>
 
     <%= content_tag(:li, class: "cursor-pointer") do

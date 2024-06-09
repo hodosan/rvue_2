@@ -1,0 +1,52 @@
+<%= form_with(model: occupation, class: "contents") do |form| %>
+  <% if occupation.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(occupation.errors.count, "error") %> prohibited this occupation from being saved:</h2>
+
+      <ul>
+        <% occupation.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :room_id %>
+    <%= form.text_field :room_id, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :day %>
+    <%= form.date_field :day, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :time_s %>
+    <%= form.datetime_field :time_s, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :time_e %>
+    <%= form.datetime_field :time_e, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :reservation %>
+    <%= form.check_box :reservation, class: "block mt-2 h-5 w-5" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :confirmed %>
+    <%= form.check_box :confirmed, class: "block mt-2 h-5 w-5" %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>

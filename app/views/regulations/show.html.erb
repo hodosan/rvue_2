@@ -1,0 +1,12 @@
+<div class="mx-auto md:w-2/3 w-full flex">
+  <div class="mx-auto">
+
+    <%= render @regulation %>
+
+    <%= link_to '編集', edit_regulation_path(@regulation), class: "mt-2 lnk_btn" %>
+    <div class="inline-block ml-2">
+      <%= button_to '削除', regulation_path(@regulation), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    </div>
+    <%= link_to '戻る', regulations_path, class: "ml-2 lnk_btn" %>
+  </div>
+</div>

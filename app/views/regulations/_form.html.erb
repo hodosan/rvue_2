@@ -1,0 +1,52 @@
+<%= form_with(model: regulation, class: "contents") do |form| %>
+  <% if regulation.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(regulation.errors.count, "error") %> prohibited this regulation from being saved:</h2>
+
+      <ul>
+        <% regulation.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :begin_time %>
+    <%= form.select :begin_time, ["08:00", "08:30", "09:00", "09:30", "10:00" ], {selected: "09:00"},
+        class: "frm_ln" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :close_time %>
+    <%= form.select :close_time, ["16:00", "16:30", "17:00", "17:30", "18:00" ], {selected: "17:00"},
+        class: "frm_ln" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :interval_s %>
+    <%= form.select :interval_s, ["11:00", "11:30", "12:00", "12:30", "13:00" ], {selected: "12:00"},
+        class: "frm_ln" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :interval_e %>
+    <%= form.select :interval_e, ["12:00", "12:30", "13:00", "13:30", "14:00" ], {selected: "13:00"},
+        class: "frm_ln" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :unit_minute %>
+    <%= form.select :unit_minute, [15, 30, 60], {selected: 30},
+        class: "frm_ln" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :version %>
+    <%= form.text_field :version, class: "frm_ln" %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "frm_btn bg-blue-600" %>
+  </div>
+<% end %>

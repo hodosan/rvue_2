@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_08_045042) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_09_031950) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -38,6 +38,31 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_08_045042) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "occupations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
+    t.date "day"
+    t.datetime "time_s"
+    t.datetime "time_e"
+    t.boolean "reservation"
+    t.boolean "confirmed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_occupations_on_room_id"
+    t.index ["user_id"], name: "index_occupations_on_user_id"
+  end
+
+  create_table "regulations", force: :cascade do |t|
+    t.string "begin_time"
+    t.string "close_time"
+    t.string "interval_s"
+    t.string "interval_e"
+    t.integer "unit_minute"
+    t.string "version"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "rooms", force: :cascade do |t|
     t.string "name"
     t.text "profile"
@@ -58,4 +83,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_08_045042) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "occupations", "rooms"
+  add_foreign_key "occupations", "users"
 end

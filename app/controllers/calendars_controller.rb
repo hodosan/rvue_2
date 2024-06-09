@@ -1,9 +1,20 @@
 class CalendarsController < ApplicationController
   before_action :set_calendar, only: %i[ show edit update destroy ]
+  include CalendarData
 
   # GET /calendars or /calendars.json
   def index
-    @calendars = Calendar.all
+    @calendars = Calendar.all   
+    month = params[:month]
+    calendar_for_view(month)
+    
+    regulation    = Regulation.last
+    @begin_time   = regulation.begin_time
+    @close_time   = regulation.close_time
+    @interval_s   = regulation.interval_s
+    @interval_e   = regulation.interval_e
+    @unit_minute  = regulation.unit_minute
+
   end
 
   # GET /calendars/1 or /calendars/1.json
@@ -13,6 +24,12 @@ class CalendarsController < ApplicationController
   # GET /calendars/new
   def new
     @calendar = Calendar.new
+    @calendar.day         = params[:day] 
+    @calendar.begin_time  = params[:day] + 'T' + params[:begin_time]
+    @calendar.close_time  = params[:day] + 'T' + params[:close_time]
+    @calendar.interval_s  = params[:day] + 'T' + params[:interval_s]
+    @calendar.interval_e  = params[:day] + 'T' + params[:interval_e]
+    @calendar.unit_minute = params[:unit_minute]
   end
 
   # GET /calendars/1/edit
