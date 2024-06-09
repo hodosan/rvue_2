@@ -11,7 +11,7 @@
 
   <% if action_name != "show" %>
     <%= link_to "表示", room, class: "lnk_btn" %>
-    <%= link_to '編集', edit_room_path(room), class: "lnk_btn ml-2" %>
+    <%= link_to '編集', edit_room_path(room), class: "lnk_btn ml-2" if admin_signed_in? %>
     <hr class="mt-6">
   <% end %>
 </div>

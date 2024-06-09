@@ -2,18 +2,32 @@
   <img src="" class="h-14 rounded-full px-0" alt="">
   <ul class="px-10 py-4 flex space-x-3 ">
     <%= content_tag(:li, class: "cursor-pointer") do
-        link_to("HOME", root_path) end %>
+        link_to("HOME", root_path) end                 if !admin_signed_in? %>
 
     <%= content_tag(:li, class: "cursor-pointer") do
-        link_to("カレンダー", calendars_path) end %>
+        link_to("ルーム", rooms_path) end               if admin_signed_in? %>
 
     <%= content_tag(:li, class: "cursor-pointer") do
-        link_to("登録", new_user_registration_path) end %>
+        link_to("カレンダー", calendars_path) end        if admin_signed_in? %>
 
     <%= content_tag(:li, class: "cursor-pointer") do
-        link_to("ログイン", new_user_session_path) end %>
+        link_to("登録", new_user_registration_path) end  if !user_signed_in? && !admin_signed_in? %>
 
     <%= content_tag(:li, class: "cursor-pointer") do
-        link_to("ADMINログイン", new_admin_session_path) end %>
+        link_to("ログイン", new_user_session_path) end   if !user_signed_in? && !admin_signed_in? %>
+
+    <%= content_tag(:li, class: "cursor-pointer") do
+        link_to("ADMINログイン", new_admin_session_path) end   if !user_signed_in? && !admin_signed_in? %>
+
+    <%= content_tag(:li, class: "cursor-pointer") do
+        link_to("ログアウト", destroy_user_session_path, data: { turbo_method: :delete }) end \
+                                                        if user_signed_in? %>
+
+    <%= content_tag(:li, class: "cursor-pointer") do
+        link_to("ADMINログアウト", destroy_user_session_path, data: { turbo_method: :delete }) end \
+                                                        if admin_signed_in? %>
+
+    <%= content_tag(:li, class: "cursor-pointer") do
+        link_to("ADMIN登録", new_admin_registration_path) end  if !user_signed_in? && !admin_signed_in? %>
   </ul>
 </nav>

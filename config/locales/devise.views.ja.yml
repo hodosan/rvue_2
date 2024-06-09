@@ -2,6 +2,13 @@ ja:
   activerecord:
     attributes:
       user:
+        name: "ID名"   # 追加
+        current_password: "現在のパスワード"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "確認用パスワード"
+        remember_me: "ログインを記憶"
+      admin:
         current_password: "現在のパスワード"
         email: "メールアドレス"
         password: "パスワード"
