@@ -1,11 +1,11 @@
 import * as Vue from "vue"
-//import {SelectTime}    from "./select-time"
+import {SelectTime}    from "./select-time"
 //import {Occupation}    from "./occupation"
 //import {getCsrfToken}  from "./getCsrfToken"
 
 const NewOccupation = {
   components: {
-    //'selectTime': SelectTime,
+    'selectTime': SelectTime,
     //'occupation': Occupation,
   },
   props: [
@@ -51,7 +51,7 @@ const NewOccupation = {
       </div>
     </div>
     <div v-show="!showAllFlag">
-      <!--<selectTime v-if="selectFlag"></selectTime>-->
+      <selectTime v-if="selectFlag"></selectTime>
       <!--<occupation v-if="occupation.frmFlag"></occupation>-->
   </div>
   `,
@@ -158,7 +158,7 @@ const NewOccupation = {
 const app = Vue.createApp({
   components: {
     'new-occupation': NewOccupation,
-    //'selectTime':   SelectTime,
+    'selectTime':   SelectTime,
     //'occupation':   Occupation,
   },
 });
