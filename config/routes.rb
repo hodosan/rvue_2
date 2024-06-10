@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  resources :occupations
   resources :regulations
+  resources :occupations   do
+    collection do
+      get :of_tday
+    end
+  end
+  
   devise_for :admins, controllers: {
     registrations: 'admins/registrations',
     sessions: 'admins/sessions'
@@ -10,7 +15,6 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     sessions: 'users/sessions'
   }
-  
   resources :calendars
   resources :rooms
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

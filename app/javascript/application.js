@@ -2,4 +2,4 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
-import "components/select-room"
+import "components/new-occupation"

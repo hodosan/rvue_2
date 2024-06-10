@@ -4,10 +4,18 @@
     <%= link_to '予約トップへ戻る', occupations_path, class: "ml-2 lnk_btn" %>
   </div>
 
-  <div id="select-room" class="mt-5 mb-10">
-    <select-room></select-room>
+  <div id="new-occupation" class="mt-5 my-10">
+    <new-occupation tday="<%= @tday %>" 
+                    :mns="<%= @mns %>" 
+                    :mnscale="<%= @mnscale.to_json %>" 
+                    :current="<%= current_user.id %>">
+    </new-occupation>
   </div>
 
+  <%#= render "form", occupation: @occupation %>
+  <%#= link_to 'Back to occupations', occupations_path, 
+  class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  
 </div>
 
 <% content_for :meta_t do %>

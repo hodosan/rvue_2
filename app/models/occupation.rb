@@ -4,4 +4,6 @@ class Occupation < ApplicationRecord
 
   scope :owned_by_user, ->(user_id){ where("user_id = ?", user_id) }
 
+  scope :of_tday, ->(tday){ where("day = ?", tday) }
+
 end

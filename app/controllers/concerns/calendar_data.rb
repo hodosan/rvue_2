@@ -11,21 +11,17 @@ module CalendarData
       end
       @this_month  = @today.strftime("%m")
       # @weeks導出準備
-      # 後述　---> c-2
       month_1st    = @today.beginning_of_month
       month_last   = @today.end_of_month
       month_1st_wd = @today.beginning_of_month.wday
       cal_first    = month_1st - month_1st_wd
       cal_end      = cal_first + 6
-      # @week作成：Ruby範囲(Range)オブジェクト
-      # 後述　---> c-1
       @weeks = []
       6.times do |i|
       week_range = Range.new(cal_first + 7*i, cal_end + 7*i )
       @weeks << week_range
       break if week_range.include?(month_last)
       end
-      # 予約可否ハッシュ作成（helper method : make_array_enable_days）使用
       @day_enable = make_array_enable_days(@today, @weeks, @enable_days)
   end
 
@@ -44,4 +40,25 @@ module CalendarData
     
     return day_enable
   end
+
+  def minute_blocks(selected_day_data)
+    day         = selected_day_data.day
+    begin_time  = selected_day_data.begin_time
+    close_time  = selected_day_data.close_time
+    interval_s  = selected_day_data.interval_s
+    interval_e  = selected_day_data.interval_e
+    unit_minute = selected_day_data.unit_minute
+
+    mns = []
+    tm = begin_time
+    while tm < close_time
+        if tm >= interval_s && tm < interval_e
+        else
+            mns << tm.strftime("%H:%M")
+        end
+        tm = tm + unit_minute*60
+    end
+    return day, mns
+  end
+
 end
