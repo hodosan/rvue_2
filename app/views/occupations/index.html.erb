@@ -13,13 +13,13 @@
       <div class="buttons">
         <% if nextmonth %>
           <%= link_to(occupations_path(month: "prev"), class: "p-1") do %>
-            <i class="fa-regular fa-square-caret-left text-green-300"></i>
+            <i class="text-green-300">←</i>
           <% end %>
-          <i class="fa-regular fa-square-caret-right text-gray-300"></i>
+          <i class="text-gray-300">→</i>
         <% else %>
-          <i class="fa-regular fa-square-caret-left text-gray-300"></i>
+          <i class="text-gray-300">←</i>
           <%= link_to(occupations_path(month: "next"), class: "p-1") do %>
-            <i class="fa-regular fa-square-caret-right text-green-300"></i>
+            <i class="text-green-300">→</i>
           <% end %>
         <% end %>
       </div>
@@ -81,6 +81,6 @@
       </tbody>
     </table>
   </div>
-
-  <%= render partial: "occupation", object: @occupations %>
+  
+  <%= render partial: "occupation", object: @occupations %>  
 </div>
