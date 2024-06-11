@@ -69,6 +69,7 @@ class OccupationsController < ApplicationController
   # POST /occupations or /occupations.json
   def create
     @occupation = Occupation.new(occupation_params)
+    @occupation.user_id = current_user.id
 
     respond_to do |format|
       if @occupation.save

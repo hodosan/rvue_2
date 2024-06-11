@@ -1,12 +1,12 @@
 import * as Vue from "vue"
 import {SelectTime}    from "./select-time"
-//import {Occupation}    from "./occupation"
-//import {getCsrfToken}  from "./getCsrfToken"
+import {Occupation}    from "./occupation"
+import {getCsrfToken}  from "./getCsrfToken"
 
 const NewOccupation = {
   components: {
     'selectTime': SelectTime,
-    //'occupation': Occupation,
+    'occupation': Occupation,
   },
   props: [
     'tday', 
@@ -52,7 +52,7 @@ const NewOccupation = {
     </div>
     <div v-show="!showAllFlag">
       <selectTime v-if="selectFlag"></selectTime>
-      <!--<occupation v-if="occupation.frmFlag"></occupation>-->
+      <occupation v-if="occupation.frmFlag"></occupation>
   </div>
   `,
   data(){
@@ -93,7 +93,7 @@ const NewOccupation = {
       // methods
       getOccupations: this.getOccupations,
       isReserved:     this.isReserved,
-      //onFormSubmited: this.onFormSubmited,
+      onFormSubmited: this.onFormSubmited,
    }
   },
   created: function(){
@@ -145,10 +145,31 @@ const NewOccupation = {
       }
       return flg;
     },
-    //onFormSubmited(){
-    //},
+    onFormSubmited(){
+      this.getOccupations();
+      this.showAllFlag    = true;
+      this.selected       = 0;
+      this.selectFlag     = false;
+      this.showSelectFlag = true;
+    },
     deleteOwn(ev) {
-      //
+      const oid = ev.target.getAttribute('value')
+      const res = window.confirm("削除してよろしいですか？");
+      if (!res) {
+        return
+      };
+
+      fetch(`/occupations/${oid}.json`,{
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest',
+          'X-CSRF-TOKEN': getCsrfToken()
+        }
+      })
+      .then(() => {
+        this.onFormSubmited();
+      })
     },
 
   }
@@ -159,7 +180,7 @@ const app = Vue.createApp({
   components: {
     'new-occupation': NewOccupation,
     'selectTime':   SelectTime,
-    //'occupation':   Occupation,
+    'occupation':   Occupation,
   },
 });
 
