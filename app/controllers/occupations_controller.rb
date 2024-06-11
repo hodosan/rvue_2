@@ -38,6 +38,11 @@ class OccupationsController < ApplicationController
     end
   end
   
+  def admin
+    @occupations = Occupation.all
+    @today       = Date.today
+  end
+ 
   # GET /occupations/1 or /occupations/1.json
   def show
   end
@@ -70,7 +75,7 @@ class OccupationsController < ApplicationController
   def create
     @occupation = Occupation.new(occupation_params)
     @occupation.user_id = current_user.id
-
+    
     respond_to do |format|
       if @occupation.save
         format.html { redirect_to occupation_url(@occupation), notice: "Occupation was successfully created." }

@@ -1,7 +1,6 @@
 <%= form_with(model: calendar, class: "contents") do |form| %>
   <% if calendar.errors.any? %>
-    <div id="error_explanation" 
-         class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2><%= pluralize(calendar.errors.count, "error") %> prohibited this calendar from being saved:</h2>
 
       <ul>
@@ -11,42 +10,45 @@
       </ul>
     </div>
   <% end %>
-
   <%= form.hidden_field :day %>
 
   <div class="my-5">
     <%= form.label :day %>
-    <% if action_name == "new" %>
-      <%= form.date_field :day, class: "frm_ln" %>
-    <% else %>
-      <%  wd = ["日", "月", "火", "水", "木", "金", "土"] %>
-      <%= content_tag(:div, calendar.day.strftime("%Y年%m月%d日 (#{wd[calendar.day.wday]})"), class: "frm_ln") %>
-    <% end %>
+    <%  wd = ["日", "月", "火", "水", "木", "金", "土"] %>
+    <%= content_tag(:div, calendar.day.strftime("%Y年%m月%d日 (#{wd[calendar.day.wday]})"), class: "frm_ln") %>
   </div>
 
   <div class="my-5">
-    <%= form.label :begin_time %>
-    <%= form.datetime_field :begin_time, class: "frm_ln" %>
+    <%= form.label :begin_time %><br>
+    <%= form.datetime_select :begin_time,
+        {discard_year: true, discard_month: true, discard_day: true, minute_step: calendar.unit_minute},
+        class: "frm_ln_noblock" %>
   </div>
 
   <div class="my-5">
-    <%= form.label :close_time %>
-    <%= form.datetime_field :close_time, class: "frm_ln" %>
+    <%= form.label :close_time %><br>
+    <%= form.datetime_select :close_time,
+        {discard_year: true, discard_month: true, discard_day: true, minute_step: calendar.unit_minute},
+        class: "frm_ln_noblock" %>
   </div>
 
   <div class="my-5">
-    <%= form.label :interval_s %>
-    <%= form.datetime_field :interval_s, class: "frm_ln" %>
+    <%= form.label :interval_s %><br>
+    <%= form.datetime_select :interval_s,
+        {discard_year: true, discard_month: true, discard_day: true, minute_step: calendar.unit_minute},
+        class: "frm_ln_noblock" %>
   </div>
 
   <div class="my-5">
-    <%= form.label :interval_e %>
-    <%= form.datetime_field :interval_e, class: "frm_ln" %>
+    <%= form.label :interval_e %><br>
+    <%= form.datetime_select :interval_e,
+        {discard_year: true, discard_month: true, discard_day: true, minute_step: calendar.unit_minute},
+        class: "frm_ln_noblock" %>
   </div>
 
   <div class="my-5">
     <%= form.label :unit_minute %>
-    <%= form.number_field :unit_minute, class: "frm_ln" %>
+    <%= form.number_field :unit_minute,step: 5, min: 10, max: 30, class: "frm_ln" %>
   </div>
 
   <div class="my-5">

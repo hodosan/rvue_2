@@ -1,12 +1,18 @@
 <nav class="bg-purple-900 text-white flex justify-between">
   <img src="" class="h-14 rounded-full px-0" alt="">
   <ul class="px-10 py-4 flex space-x-3 ">
+    <%= content_tag(:li, class: "text-pink-300 mr-2") do
+        "ようこそ " + current_user.name + "様 " end     if user_signed_in? %>
+
     <%= content_tag(:li, class: "cursor-pointer") do
         link_to("HOME", root_path) end                 if !admin_signed_in? %>
 
     <%= content_tag(:li, class: "cursor-pointer") do
         link_to("ルーム", rooms_path) end               if admin_signed_in? %>
 
+    <%= content_tag(:li, class: "cursor-pointer") do
+        link_to("予約状況", admin_occupations_path) end if admin_signed_in? %>
+    
     <%= content_tag(:li, class: "cursor-pointer") do
         link_to("予約", occupations_path) end           if user_signed_in?  %>
 

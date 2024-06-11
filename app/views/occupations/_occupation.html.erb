@@ -1,37 +1,52 @@
-<div id="<%= dom_id occupation %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">User:</strong>
-    <%= occupation.user_id %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Room:</strong>
-    <%= occupation.room_id %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Day:</strong>
-    <%= occupation.day %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Time s:</strong>
-    <%= occupation.time_s %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Time e:</strong>
-    <%= occupation.time_e %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Reservation:</strong>
-    <%= occupation.reservation %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Confirmed:</strong>
-    <%= occupation.confirmed %>
-  </p>
-
+<div class="flex flex-col my-10">
+  <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+      <div class="overflow-hidden">
+        <table class="min-w-full">
+          <caption class="text-2xl font-bold py-4">予約状況</caption>
+          <thead class="border-b">
+            <tr>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                部屋名
+              </th>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                日付
+              </th>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                開始時刻
+              </th>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                終了時刻
+              </th>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                予約確認
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @occupations.each do |occupation| %>
+            <% tdcolor = occupation.day <= Date.today ? 'text-gray-300' : 'text-gray-900' %>
+            <tr class="border-b">
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium <%= tdcolor %>">
+                <%= occupation.room.name %>
+              </td>
+              <td class="text-sm font-light px-6 py-4 whitespace-nowrap <%= tdcolor %>">
+                <%= occupation.day.strftime("%Y年 %m月 %d日") %>
+              </td>
+              <td class="text-sm font-light px-6 py-4 whitespace-nowrap <%= tdcolor %>">
+                <%= occupation.time_s.strftime("%R") %>
+              </td>
+              <td class="text-sm font-light px-6 py-4 whitespace-nowrap <%= tdcolor %>">
+                <%= occupation.time_e.strftime("%R") %>
+              </td>
+              <td class="text-sm font-light px-6 py-4 whitespace-nowrap <%= tdcolor %>">
+                <%= check_box_tag '','', occupation.reservation %>
+              </td>
+            </tr>
+           <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>

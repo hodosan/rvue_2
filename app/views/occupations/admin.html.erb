@@ -1,0 +1,31 @@
+<div class="w-full">
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl">予約状況一覧</h1>
+  </div>
+
+  <table class="table-auto my-10">
+    <thead>
+      <tr>
+        <th class="px-4 py-2">日付</th>
+        <th class="px-4 py-2">ユーザー</th>
+        <th class="px-4 py-2">部屋名</th>
+        <th class="px-4 py-2">開始時刻</th>
+        <th class="px-4 py-2">終了時刻</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @occupations.each do |occupation| %>
+        <% if occupation.day >= @today %>
+          <tr>
+            <td class="border px-4 py-2"><%= occupation.day %></td>
+            <td class="border px-4 py-2"><%= occupation.user.name %><br><%= occupation.user.email %></td>
+            <td class="border px-4 py-2"><%= occupation.room.name %></td>
+            <td class="border px-4 py-2"><%= occupation.time_s.strftime("%R") %></td>
+            <td class="border px-4 py-2"><%= occupation.time_e.strftime("%R") %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>

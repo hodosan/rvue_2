@@ -4,6 +4,9 @@ Rails.application.routes.draw do
     collection do
       get :of_tday
     end
+    collection do
+      get :admin
+    end
   end
   
   devise_for :admins, controllers: {
