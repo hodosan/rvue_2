@@ -1,4 +1,4 @@
-import {getCsrfToken} from "./getCsrfToken"
+import {getCsrfToken} from "components/getCsrfToken"
 
 export const Occupation = {
   inject: [

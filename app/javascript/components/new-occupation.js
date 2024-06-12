@@ -1,7 +1,7 @@
 import * as Vue from "vue"
-import {SelectTime}    from "./select-time"
-import {Occupation}    from "./occupation"
-import {getCsrfToken}  from "./getCsrfToken"
+import {SelectTime}    from "components/select-time"
+import {Occupation}    from "components/occupation"
+import {getCsrfToken}  from "components/getCsrfToken"
 
 const NewOccupation = {
   components: {
