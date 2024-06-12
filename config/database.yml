@@ -20,4 +20,4 @@ production:
   database: dev_production
   username: dev
   host: <%= ENV["DB_HOST"] %>
-  password: <%= ENV["apps_DATABASE_PASSWORD"] %>
+  password: <%= ENV["POSTGRES_PASSWORD"] %>
