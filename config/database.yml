@@ -19,4 +19,5 @@ production:
   <<: *default
   database: dev_production
   username: dev
+  host: <%= ENV["DB_HOST"] %>
   password: <%= ENV["apps_DATABASE_PASSWORD"] %>
