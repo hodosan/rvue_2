@@ -8,9 +8,9 @@ image: hodosan/my-room
 servers:
   web:
     hosts:
-      - 133.18.174.249
+      - 123.123.123.123
     labels:
-      traefik.http.routers.pdcapro2.rule: Host(`pdcapro2.com`) || Host(`www.pdcapro2.com`)
+      traefik.http.routers.pdcapro2.rule: Host(`example.com`) || Host(`www.example.com`)
       traefik.http.routers.pdcapro2.entrypoints: websecure
       traefik.http.routers.pdcapro2.tls.certresolver: letsencrypt
     #options:
@@ -28,7 +28,7 @@ registry:
 # Remember to run `kamal env push` after making changes!
 env:
   clear:
-    DB_HOST: 133.18.174.249
+    DB_HOST: 123.123.123.123
   secret:
     - RAILS_MASTER_KEY
     - POSTGRES_PASSWORD
@@ -38,7 +38,7 @@ env:
 accessories:
   db:
     image: postgres
-    host: 133.18.174.249
+    host: 123.123.123.123
     port: 5432
     env:
       clear:
@@ -65,9 +65,9 @@ traefik:
     entryPoints.web.http.redirections.entryPoint.scheme: https
     entryPoints.web.http.redirections.entrypoint.permanent: true
     entrypoints.websecure.http.tls: true
-    entrypoints.websecure.http.tls.domains[0].main: "pdcapro2.com"
-    entrypoints.websecure.http.tls.domains[0].sans: "www.pdcapro2.com"
-    certificatesResolvers.letsencrypt.acme.email: "hodoshima@job4sp.com"
+    entrypoints.websecure.http.tls.domains[0].main: "example.com"
+    entrypoints.websecure.http.tls.domains[0].sans: "www.example.com"
+    certificatesResolvers.letsencrypt.acme.email: "hodosan@example.com"
     certificatesResolvers.letsencrypt.acme.storage: "/letsencrypt/acme.json"
     certificatesResolvers.letsencrypt.acme.httpchallenge: true
     certificatesResolvers.letsencrypt.acme.httpchallenge.entrypoint: web
