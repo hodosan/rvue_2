@@ -13,8 +13,8 @@ servers:
       traefik.http.routers.pdcapro2.rule: Host(`pdcapro2.com`) || Host(`www.pdcapro2.com`)
       traefik.http.routers.pdcapro2.entrypoints: websecure
       traefik.http.routers.pdcapro2.tls.certresolver: letsencrypt
-    options:
-      network: "private"
+    #options:
+    #  network: "private"
 
 # Credentials for your image host.
 registry:
@@ -56,7 +56,7 @@ traefik:
       - "443:443"
     volume:
       - "/letsencrypt/acme.json:/letsencrypt/acme.json"
-    network: "private"
+    #network: "private"
 
   args:
     entryPoints.web.address: ":80"
