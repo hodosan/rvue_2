@@ -9,4 +9,3 @@ pin_all_from "app/javascript/controllers", under: "controllers"
 pin "vue", to: "https://ga.jspm.io/npm:vue@3.4.27/dist/vue.esm-browser.js", preload: true
 pin_all_from "app/javascript/components", under: "components", to: "components", preload: false
 
-#pin 'fontawesome', to: 'https://kit.fontawesome.com/972774cd24.js', preload: true
