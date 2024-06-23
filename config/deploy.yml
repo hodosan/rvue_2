@@ -10,9 +10,9 @@ servers:
     hosts:
       - 123.123.123.123
     labels:
-      traefik.http.routers.pdcapro2.rule: Host(`example.com`) || Host(`www.example.com`)
-      traefik.http.routers.pdcapro2.entrypoints: websecure
-      traefik.http.routers.pdcapro2.tls.certresolver: letsencrypt
+      traefik.http.routers.example.rule: Host(`example.com`) || Host(`www.example.com`)
+      traefik.http.routers.example.entrypoints: websecure
+      traefik.http.routers.example.tls.certresolver: letsencrypt
     #options:
     #  network: "private"
 
