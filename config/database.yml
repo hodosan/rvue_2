@@ -17,7 +17,7 @@ test:
 
 production:
   <<: *default
-  database: dev_production
-  username: dev
+  database: <%= ENV["POSTGRES_DB"] %>
+  username: <%= ENV["POSTGRES_USER"] %>
   host: <%= ENV["DB_HOST"] %>
   password: <%= ENV["POSTGRES_PASSWORD"] %>

@@ -32,6 +32,8 @@ env:
   secret:
     - RAILS_MASTER_KEY
     - POSTGRES_PASSWORD
+    - POSTGRES_USER
+    - POSTGRES_DB
 
 
 # Use accessory services (secrets come from .env).
@@ -42,10 +44,12 @@ accessories:
     port: 5432
     env:
       clear:
-        POSTGRES_USER: "dev"
-        POSTGRES_DB: "dev_production"
+        # POSTGRES_USER: "dev"
+        # POSTGRES_DB: "dev_production"
       secret:
         - POSTGRES_PASSWORD
+        - POSTGRES_USER
+        - POSTGRES_DB
     directories:
       - pg_data:/var/lib/postgresql/data
 
